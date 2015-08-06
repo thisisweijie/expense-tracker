@@ -1,0 +1,17 @@
+.panel{
+	height: 100%;
+}
+
+html, body,.row{
+	height: 100%;
+}
+
+/*
+ids use #
+*/
+
+#add-expense-btn{
+	margin-top: 20px;
+	width: 100%;
+
+}
