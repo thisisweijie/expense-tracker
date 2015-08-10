@@ -27,7 +27,7 @@
 
 			<script id="expense-list-template" type="text/x-handlebars-template">
 				{{#each this}}
-				<div class="card-panel white hoverable">
+				<div class="card-panel hoverable">
 					<span><strong>{{desc}}</strong><small> - {{category}}</small></span>
 					<span class="right"><strong>${{price}}</strong></span>
 				</div>
@@ -36,11 +36,18 @@
 		</div>
 		<!-- rightpanel -->
 		<div class="panel col s8 m8 l8">
-			<div id="jqmeter" class="card-panel grey hoverable">
-				<!-- inject jqmeter -->
+			<div class="card-panel hoverable">
+				<h5>Spendings</h5>
+				<div id="jqmeter">
+					<!-- inject jqmeter -->
+				</div>
 			</div>
 
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<div class="card-panel hoverable">
+				<h5>Expenses Breakdown</h5>
+				<canvas id="myChart" width="400" height="400"></canvas>
+			</div>
+
 
 		</div>
 	</div>
@@ -94,7 +101,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 	<script src="lib/jqmeter.js"></script>
-	// <script src="lib/Chart.min.js"></script>
 	<script src="app.js"></script>
 </body>
 </html>
