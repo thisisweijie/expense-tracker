@@ -114,7 +114,8 @@ var App = {
 			color: "#FDB45C",
 			highlight: "#FFC870",
 			label: "Entertainment"
-		// }, {
+		}
+		// , {
 		// 	value: 0,
 		// 	color: "#FDF45C",
 		// 	highlight: "#FFF870",
