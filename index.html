@@ -1,106 +1,100 @@
+<!DOCTYPE html>
 <html>
 <head>
- <title>Expense Tracker</title>
- <!-- Stylesheets -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
- <link rel="stylesheet" type="text/css" href="styles.css">
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<title>Expense Tracker</title>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
- <div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper orange darken-2">
-      <a class="brand-logo center">Expense Tracker</a>
-    </div>
-  </nav>
-</div>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper orange darken-2">
+				<a class="brand-logo center">Expense Tracker</a>
+			</div>
+		</nav>
+	</div>
 
-<div class="row">
-  <!-- leftpanel -->
-  <div class="panel col s4 m4 l4 teal accent-1">
-    <a id="add-expense-btn" class="waves-effect waves-light btn-large"><i class="material-icons">playlist_add</i>Add Expense</a>
+	<div class="row">
+		<!-- leftpanel -->
+		<div class="panel col s4 m4 l4 teal accent-1">
+			<a id="add-expense-btn" class="waves-effect waves-light btn-large"><i class="material-icons">playlist_add</i>Add Expense</a>
 
-    <div id="expense-list">
-      <!-- inject html here -->
-    </div>
+			<div id="expense-list">
+				<!-- inject html here -->
+			</div>
 
-    <script id="expense-list-template" type="text/x-handlebars-template">
-      {{#each this}}
-      <div class="card-panel white hoverable">
-            <span><strong>{{desc}}</strong><small> - {{category}}</small></span>
-            <span class="right"><strong>${{price}}</strong></span>
-      </div>
-      {{/each}}
-    </script>
-  </div>
-  <!-- rightpanel -->
-  <div class="panel col s8 m8 l8">
-  
-    
-    <div id="jqmeter" class="card-panel grey hoverable">
-      <!-- inject jqmeter -->
-    </div>
+			<script id="expense-list-template" type="text/x-handlebars-template">
+				{{#each this}}
+				<div class="card-panel white hoverable">
+					<span><strong>{{desc}}</strong><small> - {{category}}</small></span>
+					<span class="right"><strong>${{price}}</strong></span>
+				</div>
+				{{/each}}
+			</script>
+		</div>
+		<!-- rightpanel -->
+		<div class="panel col s8 m8 l8">
+			<div id="jqmeter" class="card-panel grey hoverable">
+				<!-- inject jqmeter -->
+			</div>
 
-    <canvas id="myChart" width="400" height="400"></canvas>
+			<canvas id="myChart" width="400" height="400"></canvas>
 
-  </div>
-</div>
+		</div>
+	</div>
 
 
 
-<!-- Modal Structure -->
-<!-- can be placed anywhere -->
-<div id="add-expense-modal" class="modal modal-fixed-footer">
-  <div class="modal-content">
-    <h4>Add Expense</h4>
-    <!-- form -->
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix">error</i>
-            <input id="desc" type="text" class="validate">
-            <label for="icon_prefix">Description</label>
-          </div>
+	<!-- Modal Structure -->
+	<!-- can be placed anywhere -->
+	<div id="add-expense-modal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4>Add Expense</h4>
+			<!-- form -->
+			<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s6">
+							<i class="material-icons prefix">error</i>
+							<input id="desc" type="text" class="validate">
+							<label for="icon_prefix">Description</label>
+						</div>
 
-          <div class="input-field col s6">
-            <i class="material-icons prefix">attach_money</i>
-            <input id="price" type="number" class="validate">
-            <label for="icon_telephone">Price</label>
-          </div>
+						<div class="input-field col s6">
+							<i class="material-icons prefix">attach_money</i>
+							<input id="price" type="number" class="validate">
+							<label for="icon_telephone">Price</label>
+						</div>
 
-          <div class="input-field col s12">
-            <select id="category">
-              <option value="" disabled selected>Choose your option</option>
-              <option value="food">Food</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="transport">Transport</option>
-            </select>
-            <label>Category</label>          
-          </div>
+						<div class="input-field col s12">
+							<select id="category">
+								<option value="" disabled selected>Choose your option</option>
+								<option value="food">Food</option>
+								<option value="entertainment">Entertainment</option>
+								<option value="transport">Transport</option>
+							</select>
+							<label>Category</label>
+						</div>
+					</div>
 
-          <!-- <div class="input-field col s12">
-            
-            <input type="date" class="datepicker">
-            <label>Date</label>
-          </div>        -->   
-        </div>
+				</form>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class="done-btn modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+		</div>
+	</div>
 
-      </form>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <a class="done-btn modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
-  </div>
-</div>
-
-<!--Load orders are important  -->
-<!-- Script imports -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
-<script src="lib/jqmeter.js"></script>
-<script src="lib/Chart.min.js"></script>
-<script src="app.js"></script>
+	<!--Load orders are important  -->
+	<!-- Script imports -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+	<script src="lib/jqmeter.js"></script>
+	// <script src="lib/Chart.min.js"></script>
+	<script src="app.js"></script>
 </body>
 </html>
