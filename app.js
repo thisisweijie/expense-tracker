@@ -51,6 +51,9 @@ var App = {
 			// width:'50px',
 			// height:'200px'
 		});
+
+		$('#totalExpenses').html('Total Spendings: $' + totalSpending);
+
 		// var result = false;
 
 		// var allCategories = [];
