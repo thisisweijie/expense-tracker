@@ -113,13 +113,14 @@ var App = {
 			value: 0,
 			color: "#FDB45C",
 			highlight: "#FFC870",
-			label: "Shopping"
-		}, {
-			value: 0,
-			color: "#FDF45C",
-			highlight: "#FFF870",
-			label: "Education"
-		}];
+			label: "Entertainment"
+		// }, {
+		// 	value: 0,
+		// 	color: "#FDF45C",
+		// 	highlight: "#FFF870",
+		// 	label: "Education"
+		// }
+		];
 
 		Store.expenses.forEach(function(expense) {
 			if (expense.category === 'food') {
@@ -128,12 +129,12 @@ var App = {
 			if (expense.category === 'transport') {
 				data[1].value += Number(expense.price);
 			}
-			if (expense.category === 'shopping') {
+			if (expense.category === 'entertainment') {
 				data[2].value += Number(expense.price);
 			}
-			if (expense.category === 'education') {
-				data[3].value += Number(expense.price);
-			}
+			// if (expense.category === 'education') {
+			// 	data[3].value += Number(expense.price);
+			// }
 
 		});
 
