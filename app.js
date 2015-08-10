@@ -8,7 +8,6 @@ $
 /*returns a jquery object*/
 var $addExpenseBtn = $('#add-expense-btn');
 
-
 //to organize the codes
 var App = {
 
@@ -44,7 +43,7 @@ var App = {
 		}
 
 		console.log(totalSpending);
-		
+
 		$('#jqmeter').jQMeter({
 			goal:'300',
 			raised:totalSpending+''
@@ -52,11 +51,97 @@ var App = {
 			// width:'50px',
 			// height:'200px'
 		});
+		// var result = false;
 
-		// var ctx = document.getElementById("myChart").getContext("2d");
-		// var myNewChart = new Chart(ctx).Radar(data);
+		// var allCategories = [];
+		// for(i = 0; i < Store.expenses.length; i++){
+		// 	var expense = Store.expenses[i];
+		// 	for(var j = 0; j < allCategories.length; j++){
+		// 		var expense2 = allCategories[j];
+		// 		if(expense.category == expense2){
+		// 			result = true;
+		// 		}
+		// 	}
+		// 	console.log(result);
+		// 	console.log(expense.category);
+
+		// 	if(result == false){
+		// 		allCategories.push(expense.category);
+		// 	}
+		// 	result = false;
+		// }
+
+		// var allExpenses = [];
+
+		// for(i = 0; i < Store.expenses.length; i++){
+		// 	var expense = Store.expenses[i];
+		// 	allExpenses.push(expense.price);
+		// }
 
 
+		// var data = {
+		// 	labels: allCategories,
+		// 	datasets: [
+		// 	{
+		// 		label: "My First dataset",
+		// 		fillColor: "rgba(220,220,220,0.2)",
+		// 		strokeColor: "rgba(220,220,220,1)",
+		// 		pointColor: "rgba(220,220,220,1)",
+		// 		pointStrokeColor: "#fff",
+		// 		pointHighlightFill: "#fff",
+		// 		pointHighlightStroke: "rgba(220,220,220,1)",
+		// 		data: allExpenses
+		// 	}
+		// 	]
+		// };
+
+
+	},
+
+	loadPieChart: function() {
+		var data = [{
+			value: 0,
+			color: "#F7464A",
+			highlight: "#FF5A5E",
+			label: "Food"
+		}, {
+			value: 0,
+			color: "#46BFBD",
+			highlight: "#5AD3D1",
+			label: "Transport"
+		}, {
+			value: 0,
+			color: "#FDB45C",
+			highlight: "#FFC870",
+			label: "Shopping"
+		}, {
+			value: 0,
+			color: "#FDF45C",
+			highlight: "#FFF870",
+			label: "Education"
+		}];
+
+		Store.expenses.forEach(function(expense) {
+			if (expense.category === 'food') {
+				data[0].value += Number(expense.price);
+			}
+			if (expense.category === 'transport') {
+				data[1].value += Number(expense.price);
+			}
+			if (expense.category === 'shopping') {
+				data[2].value += Number(expense.price);
+			}
+			if (expense.category === 'education') {
+				data[3].value += Number(expense.price);
+			}
+
+		});
+
+		this.pieChart.Doughnut(data, {
+			animateScale : true,
+			animationEasing: 'easeOut',
+			animationSteps: 30
+		});
 	},
 
 
@@ -64,7 +149,7 @@ var App = {
 		/*javascript functions are data types*/
 		$addExpenseBtn.on('click', function(){
 			console.log('clicked');
-			$('#add-expense-modal').openModal();			
+			$('#add-expense-modal').openModal();
 		});
 
 		/*
@@ -84,7 +169,7 @@ var App = {
 				category: category
 			}
 
-			
+
 			Store.addExpense(expense);
 			App.refresh();
 
@@ -95,11 +180,14 @@ var App = {
 	refresh: function(){
 		App.loadExpenses();
 		App.loadProgress();
+		App.loadPieChart();
 	},
 
 	initPlugins: function(){
 		$('select').material_select();
 
+		var ctx = $('#myChart').get(0).getContext("2d");
+		this.pieChart = new Chart(ctx);
 		/*
 		$('.datepicker').pickadate({
 		    selectMonths: true, // Creates a dropdown to control month
